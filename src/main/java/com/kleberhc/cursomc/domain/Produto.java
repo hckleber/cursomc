@@ -12,6 +12,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 @Entity
 public class Produto implements Serializable{
 
@@ -27,6 +29,7 @@ public class Produto implements Serializable{
 
 //	Relacionamento entre tabelas no BD do tipo muitos para muitos.
 //	Utiliza uma terceira TB para fazer o relacionamento
+	@JsonBackReference // Retirar referência ciclica. Ele vai omitir este lado na busca. Implementar "JsonManagedReference" do outro lado.
 	@ManyToMany
 	@JoinTable(name = "PRODUTO_CATEGORIA",
 		joinColumns = @JoinColumn(name = "produto_id"), // Chave estrangeira que referencia o produto
