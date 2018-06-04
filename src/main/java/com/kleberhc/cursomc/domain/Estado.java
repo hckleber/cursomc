@@ -27,7 +27,7 @@ public class Estado implements Serializable{
 	
 	@JsonBackReference
 	@OneToMany(mappedBy = "estado") //em mappedby deve entrar o nome do atributo que mapeou do lado inverso (na outra classe)
-	private List<Cidade> cidades = new ArrayList();
+	private List<Cidade> cidades = new ArrayList<>();
 	
 	public Estado() {
 		
