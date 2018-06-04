@@ -10,6 +10,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.MapsId;
 import javax.persistence.OneToOne;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.kleberhc.cursomc.enums.EstadoPagamento;
 
 @Entity
@@ -24,6 +25,7 @@ public abstract class Pagamento implements Serializable{
 	@Id
 	private Integer id;
 	
+	@JsonBackReference
 	//Não será gerado um Id de forma automática, ele pegará o Id gerado no pango para o pedido
 	//Assim pedido e pagamento terão o mesmo Id
 	@OneToOne
