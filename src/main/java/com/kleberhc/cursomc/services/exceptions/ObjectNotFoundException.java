@@ -1,4 +1,4 @@
-package com.kleberhc.cursomc.services;
+package com.kleberhc.cursomc.services.exceptions;
 
 public class ObjectNotFoundException extends RuntimeException{
 

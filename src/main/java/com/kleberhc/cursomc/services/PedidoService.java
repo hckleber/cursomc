@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.kleberhc.cursomc.domain.Pedido;
 import com.kleberhc.cursomc.repositories.PedidoRepository;
+import com.kleberhc.cursomc.services.exceptions.ObjectNotFoundException;
 
 @Service
 public class PedidoService {

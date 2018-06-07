@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.kleberhc.cursomc.domain.Cliente;
 import com.kleberhc.cursomc.repositories.ClienteRepository;
+import com.kleberhc.cursomc.services.exceptions.ObjectNotFoundException;
 
 @Service
 public class ClienteService {
