@@ -21,4 +21,10 @@ public class CategoriaService {
 		}
 		return obj;
 	}
+	
+	public Categoria insert(Categoria obj) {
+		obj.setId(null); // Usar nulo para dizer ao banco que é uma inclusão
+		return repo.save(obj);
+	}
+	
 }

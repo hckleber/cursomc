@@ -1,14 +1,17 @@
 package com.kleberhc.cursomc.resources;
 
+import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.kleberhc.cursomc.domain.Categoria;
 import com.kleberhc.cursomc.services.CategoriaService;
@@ -27,4 +30,16 @@ public class CategoriaResource {
 		return ResponseEntity.ok().body(obj);
 		
 	}
+	
+	@RequestMapping(method=RequestMethod.POST)
+	public ResponseEntity<Void> insert(@RequestBody Categoria obj){ // RequestBody faz o JSON ser convertido em obj JAVA
+		obj = service.insert(obj);
+		
+		//Caso de criação de uma nova categoria com POST
+		//A resposta para um POST no http deve retornar o URI + o ID criado
+		URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
+				.path("/{id}").buildAndExpand(obj.getId()).toUri();
+		return ResponseEntity.created(uri).build();
+	}
+	
 }
