@@ -8,6 +8,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.kleberhc.cursomc.domain.Cidade;
 import com.kleberhc.cursomc.domain.Cliente;
@@ -29,6 +30,7 @@ public class ClienteService {
 	@Autowired
 	private EnderecoRepository enderecoRepository;
 	
+	@Transactional
 	public Cliente insert(Cliente obj) {
 		obj.setId(null); // Usar nulo para dizer ao banco que é uma inclusão
 		obj = repo.save(obj);
