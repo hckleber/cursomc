@@ -7,7 +7,8 @@ import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import com.kleberhc.cursomc.domain.Cliente;
-
+import com.kleberhc.cursomc.services.validation.ClienteUpDate;
+@ClienteUpDate
 public class ClienteDTO implements Serializable {
 
 	/**
