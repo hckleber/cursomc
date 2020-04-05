@@ -1,0 +1,58 @@
+
+Resours conversa com Services para trazer Domain
+
+<Logica>
+Controlador REST acessa Camada de Serviço
+Camada serviço chama Obj Repository que irá buscar o onj requisitado no BD
+
+
+
+<Pasta resources>
+Localizaçao de OPERAÇOES E CONSULTAS
+Onde grava as classes de controladores REST
+Node da classe + Resource
+
+
+<Pasta Services>
+Contem as regras de negócio que ainda nao tenham sido implementadas.
+Nao tem contato com nenhuma das camadas
+
+<Pasta Repository>
+Camada de acesso a dados
+Conversar com o banco de dados >> CRUD
+
+<Pasta Domain>
+Implementa classes de dominio
+ 
+
+
+<Anotaçoes>
+
+@RestController
+
+@RequestMapping(values="<nome_do_endpoint_REST>")
+Ex.: /categorias
+
+@RequestMapping(method=RequestMethod.GET)
+
+@Entity
+Mapeamento objeto relacional do JPA para mapear objeto em banco de dados
+
+@Id - Coluna Id do banco
+@GeneratedValue(strategy=GenerationType.IDENTITY) - Auto geracao da chave primaria
+
+-usado no repositories-
+@Repository
+public interface "xxxxxx" extends JpaRepository<tipo de objeto, Atribto identificador'integer,por exemplo'> 
+-Ele mapeia o objeto à tabela no banco-
+
+-usado no services-
+@Service
+<Dentro da public class
+@Autowired
+private xxxxRepository 'qqcoisa';
+
+public xxxx buscar(Integer id){
+	xxx obj = 'qqcoisa'.findOne(id);
+	return onj;
+}

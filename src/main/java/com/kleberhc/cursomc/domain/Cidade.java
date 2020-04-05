@@ -23,7 +23,7 @@ public class Cidade implements Serializable{
 	private String nome;
 	
 	@ManyToOne // relacionamento de 1 para muitos no BD
-	@JoinColumn(name = "estado_id") // nome da chave estrangeira para refeerência do estado na TB cidade
+	@JoinColumn(name = "estado_id") // nome da chave estrangeira para referência do estado na TB cidade
 	private Estado estado;
 	
 	public Cidade() {
