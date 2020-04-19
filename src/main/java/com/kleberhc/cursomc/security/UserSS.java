@@ -77,4 +77,9 @@ public class UserSS implements UserDetails {
 		return true;
 	}
 
+	public boolean hasRole(Perfil perfil) {
+		//Verifica se o perfil está contida na coleçao GrantedAuthority, já fazendo a conversao para GrantedAuthority 
+		return getAuthorities().contains(new SimpleGrantedAuthority(perfil.getDescricao()));
+	}
+	
 }

@@ -16,9 +16,12 @@ import com.kleberhc.cursomc.domain.Cliente;
 import com.kleberhc.cursomc.domain.Endereco;
 import com.kleberhc.cursomc.dto.ClienteDTO;
 import com.kleberhc.cursomc.dto.ClienteNewDTO;
+import com.kleberhc.cursomc.enums.Perfil;
 import com.kleberhc.cursomc.enums.TipoCliente;
 import com.kleberhc.cursomc.repositories.ClienteRepository;
 import com.kleberhc.cursomc.repositories.EnderecoRepository;
+import com.kleberhc.cursomc.security.UserSS;
+import com.kleberhc.cursomc.services.exceptions.AuthorizationException;
 import com.kleberhc.cursomc.services.exceptions.DataIntegrityExeption;
 import com.kleberhc.cursomc.services.exceptions.ObjectNotFoundException;
 
@@ -44,6 +47,12 @@ public class ClienteService {
 	
 	
 	public Cliente find(Integer id) {
+		
+		UserSS user = UserService.authenticated();
+		if(user==null || !user.hasRole(Perfil.ADMIN) && !id.equals(user.getId())) {
+			throw new AuthorizationException("Acesso negado");
+		}
+		
 		Cliente obj = repo.findOne(id);
 		if(obj == null) {
 			throw new ObjectNotFoundException("Objeto não encontrado! ID: "+ id + ", Tipo: " + Cliente.class.getName());
