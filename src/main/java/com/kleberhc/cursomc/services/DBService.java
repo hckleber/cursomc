@@ -20,6 +20,7 @@ import com.kleberhc.cursomc.domain.PagamentoComCartao;
 import com.kleberhc.cursomc.domain.Pedido;
 import com.kleberhc.cursomc.domain.Produto;
 import com.kleberhc.cursomc.enums.EstadoPagamento;
+import com.kleberhc.cursomc.enums.Perfil;
 import com.kleberhc.cursomc.enums.TipoCliente;
 import com.kleberhc.cursomc.repositories.CategoriaRepository;
 import com.kleberhc.cursomc.repositories.CidadeRepository;
@@ -113,16 +114,22 @@ public class DBService {
 		estadoRepository.save(Arrays.asList(est1, est2));
 		cidadeRepository.save(Arrays.asList(c1, c2, c3));
 
-		Cliente cli1 = new Cliente(null, "Milene Cardoso", "milene.ss@gmail.com", "123456789", TipoCliente.PESSOAFISICA, pe.encode("123"));
+		Cliente cli1 = new Cliente(null, "Milene Cardoso", "milene.ss@gmail.com", "36378912377", TipoCliente.PESSOAFISICA, pe.encode("123"));
 		cli1.getTelefones().addAll(Arrays.asList("123456", "987654"));
+		
+		Cliente cli2 = new Cliente(null, "Ana Costa", "hc.kleber@gmail.com", "31628382740", TipoCliente.PESSOAFISICA, pe.encode("123"));
+		cli1.getTelefones().addAll(Arrays.asList("545466546", "654654654"));
+		cli2.addPerfil(Perfil.ADMIN);
 
 		Endereco e1 = new Endereco(null, "Rua Flores", "300", "Apto 303", "Jardins", "6542318", cli1, c2);
 		Endereco e2 = new Endereco(null, "Av. Matos", "105", "Sala 800", "Centro", "4632154", cli1, c2);
+		Endereco e3 = new Endereco(null, "Av. Floriano", "2106", null, "Centro", "646545621", cli2, c2);
 
 		cli1.getEnderecos().addAll(Arrays.asList(e1, e2));
+		cli2.getEnderecos().addAll(Arrays.asList(e3));
 
-		clienteRepository.save(Arrays.asList(cli1));
-		enderecoRepository.save(Arrays.asList(e1, e2));
+		clienteRepository.save(Arrays.asList(cli1, cli2));
+		enderecoRepository.save(Arrays.asList(e1, e2, e3));
 
 		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm");
 		Pedido ped1 = new Pedido(null, sdf.parse("30/09/2017 10:32"), cli1, e1);
