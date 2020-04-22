@@ -16,6 +16,7 @@ Node da classe + Resource
 <Pasta Services>
 Contem as regras de negócio que ainda nao tenham sido implementadas.
 Nao tem contato com nenhuma das camadas
+Ela que tem q observar as regras de negocio
 
 <Pasta Repository>
 Camada de acesso a dados
